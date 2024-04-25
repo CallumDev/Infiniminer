@@ -99,7 +99,7 @@ namespace Infiniminer
             foreach (ChatMessage msg in _P.chatBuffer)
                 msg.timestamp -= (float)elapsedSeconds;
             _P.chatBuffer.RemoveAll(MessageExpired);
-
+            var after = _P.chatBuffer.Count;
             int bufferSize = 10;
             if (_P.chatFullBuffer.Count > bufferSize)
                 _P.chatFullBuffer.RemoveRange(bufferSize, _P.chatFullBuffer.Count - bufferSize);
@@ -239,6 +239,7 @@ namespace Infiniminer
         public void drawChat(List<ChatMessage>messages, RenderContext renderContext)
         {
             int newlines = 0;
+            int y = renderContext.CurrentViewport.Height - 120;
             for (int i = 0; i < messages.Count; i++)
             {
                 Color4 chatColor = Color4.White;
@@ -247,10 +248,9 @@ namespace Infiniminer
                 if (messages[i].type == ChatMessageType.SayBlueTeam)
                     chatColor = _P.blue;// Defines.IM_BLUE;
 
-                int y = renderContext.CurrentViewport.Height - 114;
                 newlines += messages[i].newlines;
-                y -= 16 * newlines;
-                //y -= 16 * i;
+                var h = renderContext.Renderer2D.MeasureString(Fonts.UiFont, messages[i].message).Y;
+                y -= (int)h;
                 renderContext.Renderer2D.DrawStringBaseline(Fonts.UiFont.Name, Fonts.UiFont.Size, messages[i].message, 20, y, chatColor,
             false, new OptionalColor(Color4.Black));
             }
@@ -377,14 +377,6 @@ namespace Infiniminer
             if (_P.chatMode != ChatMessageType.None)
             {
                 drawChat(_P.chatFullBuffer,renderContext);
-                for (int i = 0; i < _P.chatFullBuffer.Count; i++)
-                {
-                    Color4 chatColor = Color4.White;
-                    chatColor = _P.chatFullBuffer[i].type == ChatMessageType.SayAll ? Color4.White : _P.chatFullBuffer[i].type == ChatMessageType.SayRedTeam ? Color4.Red : Color4.Blue;
-                    
-                    renderContext.Renderer2D.DrawString(Fonts.UiFont, _P.chatFullBuffer[i].message, new Vector2(22, renderContext.CurrentViewport.Height - 114 - 16 * i), Color4.Black);
-                    renderContext.Renderer2D.DrawString(Fonts.UiFont, _P.chatFullBuffer[i].message, new Vector2(20, renderContext.CurrentViewport.Height - 116 - 16 * i), chatColor);
-                }
             }
             else
             {

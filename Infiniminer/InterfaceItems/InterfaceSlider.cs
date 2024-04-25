@@ -23,12 +23,12 @@ namespace InterfaceItems
 
         public InterfaceSlider(Infiniminer.InfiniminerGame gameInstance)
         {
-            this.game = game;
+            this.game = gameInstance;
         }
 
         public InterfaceSlider(Infiniminer.InfiniminerGame gameInstance, Infiniminer.PropertyBag pb)
         {
-            this.game = game;
+            this.game = gameInstance;
             _P = pb;
         }
 

@@ -31,7 +31,7 @@ public static class RendererExtensions
 
 public static class Fonts
 {
-    public static FontDescription UiFont = new FontDescription("VT323", 22);
+    public static FontDescription UiFont = new FontDescription("VT323", 20);
     public static FontDescription NameFont = new FontDescription("VT323", 18);
     public static FontDescription RadarFont = new FontDescription("VT323", 16);
 }

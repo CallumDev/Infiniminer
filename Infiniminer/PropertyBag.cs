@@ -89,6 +89,7 @@ namespace Infiniminer
 
         public PropertyBag(InfiniminerGame gameInstance)
         {
+            game = gameInstance;
             netClient = new NetClient();
 
 
