@@ -1,0 +1,3 @@
+[submodule "extern/Librelancer"]
+	path = extern/Librelancer
+	url = https://github.com/Librelancer/Librelancer

@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>winexe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\extern\Librelancer\extern\LiteNetLib\LiteNetLib\LiteNetLib.csproj" />
+      <ProjectReference Include="..\extern\Librelancer\src\LibreLancer.Base\LibreLancer.Base.csproj" />
+      <ProjectReference Include="..\extern\Librelancer\src\LibreLancer.ImageLib\LibreLancer.ImageLib.csproj" />
+      <ProjectReference Include="..\extern\Librelancer\src\LibreLancer.Media\LibreLancer.Media.csproj" />
+      <ProjectReference Include="..\InfiniminerShared\InfiniminerShared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Content" />
+        <Content Include="Content\**\*.*" CopyToOutputDirectory="PreserveNewest" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="client.config.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="keymap.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+    <Import Project="..\PublishAssets\PublishAssets.projitems" Label="Shared" />
+</Project>
