@@ -12,9 +12,14 @@
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
       <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
+    
+    <PropertyGroup>
+        <PublishTrimmed>true</PublishTrimmed>
+        <TrimMode>partial</TrimMode>
+        <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\extern\Librelancer\extern\LiteNetLib\LiteNetLib\LiteNetLib.csproj" />
       <ProjectReference Include="..\extern\Librelancer\src\LibreLancer.Base\LibreLancer.Base.csproj" />
       <ProjectReference Include="..\extern\Librelancer\src\LibreLancer.ImageLib\LibreLancer.ImageLib.csproj" />
       <ProjectReference Include="..\extern\Librelancer\src\LibreLancer.Media\LibreLancer.Media.csproj" />
@@ -33,6 +38,10 @@
       <None Update="keymap.txt">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="LiteNetLib" Version="1.2.0" />
     </ItemGroup>
 
     <Import Project="..\PublishAssets\PublishAssets.projitems" Label="Shared" />

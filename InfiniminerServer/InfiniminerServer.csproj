@@ -9,6 +9,12 @@
       <ProjectReference Include="..\InfiniminerShared\InfiniminerShared.csproj" />
     </ItemGroup>
 
+    <PropertyGroup>
+        <PublishTrimmed>true</PublishTrimmed>
+        <TrimMode>partial</TrimMode>
+        <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    </PropertyGroup>
+    
     <ItemGroup>
       <None Update="server.config.txt">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -19,6 +25,10 @@
       <None Update="banlist.txt">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="LiteNetLib" Version="1.2.0" />
     </ItemGroup>
 
 </Project>

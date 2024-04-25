@@ -41,6 +41,7 @@ namespace Infiniminer
         public InfiniminerGame(string[] args) : base(1024, 768, false)
         {
             keyBinds = new KeyBindHandler(this);
+            Title = "Infiniminer";
         }
 
         public void setServername(string newName)
@@ -481,7 +482,7 @@ namespace Infiniminer
         protected override void Load()
         {
             base.Load();
-            
+            FLLog.Info("Game", "Reading Config");
             //Now moving to DatafileWriter only since it can read and write
             DatafileWriter dataFile = new DatafileWriter("client.config.txt");
             //if (dataFile.Data.ContainsKey("width"))
@@ -621,10 +622,13 @@ namespace Infiniminer
 
         void LoadContent()
         {
+            FLLog.Info("Game", "Loading Content");
+
             Content.AddFontFile("VT323-Regular.ttf");
             // Initialize the property bag.
             ResetPropertyBag();
 
+            FLLog.Info("Game", "Starting");
             // Set the initial state to team selection
             ChangeState("Infiniminer.States.TitleState");
 

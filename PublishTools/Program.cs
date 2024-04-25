@@ -2,6 +2,7 @@
 
 using System.Reflection.PortableExecutable;
 using System.Text;
+using PublishTools;
 
 const int E_LFANEW = 0x3C;
 const int SUBSYSTEM_OFFSET = 0x5C;
@@ -10,7 +11,19 @@ var appHostPath = args[0];
 bool winexe = args[1] == "winexe";
 bool isWin = args[1] == "winexe" || args[1] == "winconsole";
 
+
+if (isWin)
+{
+    var libPath = Path.GetDirectoryName(appHostPath) + "/x64";
+    if (Directory.Exists(libPath))
+    {
+        Console.WriteLine($"Locating dependencies for {libPath}");
+        MingwDeps.CopyMingwDependencies("x86_64-w64-mingw32", libPath);
+    }
+}
 Console.WriteLine($"Patching {appHostPath} as {args[1]}");
+
+
 
 static int FindBytes(byte[] bytes, byte[] pattern) {
     int idx = 0;

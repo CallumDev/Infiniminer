@@ -50,7 +50,9 @@ namespace StateMasher
         {
             Content = new ContentManager(RenderContext);
             Services.Add(Content);
+            FLLog.Info("Audio", "Initialising Audio");
             Audio = new AudioManager(this);
+            Audio.WaitReady();            
             Content.AudioManager = Audio;
             Keyboard.KeyDown += a => currentState?.OnKeyDown(a.Key);
             Keyboard.KeyUp += a => currentState?.OnKeyUp(a.Key);
